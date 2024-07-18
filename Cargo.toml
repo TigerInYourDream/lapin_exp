@@ -1,0 +1,60 @@
+[package]
+name = "lapin_exp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.86"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+tokio = { version = "1.0.0", features = ["rt", "rt-multi-thread", "macros"] }
+futures = "0.3.30"
+lapin = "2.4.0"
+uuid = "1.10.0"
+tokio-stream = "0.1.15"
+
+
+[[bin]]
+path = "bin/send.rs"
+name = "send"
+
+[[bin]]
+path = "bin/receive.rs"
+name = "receive"
+
+[[bin]]
+path = "bin/worker.rs"
+name = "worker"
+
+[[bin]]
+path = "bin/new_task.rs"
+name = "new_task"
+
+
+[[bin]]
+path = "bin/receive_log.rs"
+name = "receive_log"
+
+[[bin]]
+path = "bin/emit_log.rs"
+name = "emit_log"
+
+[[bin]]
+path = "bin/receive_logs_direct.rs"
+name = "receive_logs_direct"
+
+[[bin]]
+path = "bin/emit_log_direct.rs"
+name = "emit_log_direct"
+
+[[bin]]
+path = "bin/receive_logs_topic.rs"
+name = "receive_logs_topic"
+
+[[bin]]
+path = "bin/emit_log_topic.rs"
+name = "emit_log_topic"
+
+
+
+

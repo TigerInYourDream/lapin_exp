@@ -1,0 +1,21 @@
+let CONTAINER= "rabbitmq"
+let USER= "[user-->]"
+
+let is_docker = $ docker ps -a | grep {CONTAINER} | awk '\{print \$11}' $ failed {
+    echo "{USER} rabbitmq docker is not installed"
+}
+
+if is_docker == CONTAINER {
+    echo "rabbitmq container is already running"
+} else {
+    echo "start create rabbitmq container ..."
+    $docker run -it --rm --name rabbitmq -p 5552:5552 -p 15672:15672 -p 5672:5672  \
+    -e RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost' \
+    rabbitmq:3.13 $ failed {
+        echo "{USER} Failed to install RabbitMQ"
+    }   
+
+    $docker exec rabbitmq rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management$ failed {
+        echo "{USER} failed install rabbitmq_stream"
+    }
+}
